@@ -7,7 +7,9 @@ import org.lordibe.folzgames.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -32,6 +34,27 @@ public class CartController {
 
         return "redirect:/shop-page";
     }
+
+    @GetMapping("/increase-decrease-product")
+    public String increaseProduct(@RequestParam("newQuantity") Integer newQuantity,
+                            @RequestParam("prodId") Integer prodId,
+                            @RequestParam("userId") Integer userId) {
+
+        cartService.updateUserCart(newQuantity, prodId, userId);
+
+        return "redirect:/cart-page";
+    }
+
+    @DeleteMapping("/delete-product")
+    public String increaseProduct(@RequestParam("userId") Integer userId,
+                                  @RequestParam("prodId") Integer prodId) {
+
+        cartService.deleteByUserIdAndProdId(userId, prodId);
+
+        return "redirect:/cart-page";
+    }
+
+
 
     @GetMapping("/cart-page")
     public String displayCustomerCart(HttpSession session, Model model) {

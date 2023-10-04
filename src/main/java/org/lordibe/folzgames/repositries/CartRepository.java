@@ -14,17 +14,12 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     List<Cart> findByUserId(Integer id);
     Optional<Cart> findCartByUserIdAndProdId(Integer userId, Integer prodId);
 
+    void deleteByUserIdAndProdId(Integer userId, Integer prodId);
+
     @Modifying
     @Transactional
     @Query("UPDATE Cart c SET c.quantity = c.quantity + :newQuantity WHERE c.prodId = :prodId AND c.userId = :userId")
     void updateQuantityByProdIdAndUserId(@Param("newQuantity") Integer newQuantity,
                                          @Param("prodId") Integer prodId,
                                          @Param("userId") Integer userId);
-
-//    @Modifying
-//    @Transactional
-//    @Query("SELECT c.prodId, c.userId, c.price, c.quantity, p.name, p.category FROM Cart c JOIN Product p ON c.prodId = p.id WHERE c.userId = :inputID")
-//    List<Cart> findByUserId(@Param("inputID") Integer userId);
-
-
 }

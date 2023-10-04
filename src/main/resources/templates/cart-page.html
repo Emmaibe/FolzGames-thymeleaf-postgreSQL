@@ -99,10 +99,10 @@
             <div th:each="prod : ${cart}">
                 <tbody>
                     <td>
-                        <span></span>
+                        <span th:text="${prod.getProdName()}"></span>
                     </td>
                     <td>
-                        <span></span>
+                        <span th:text="${prod.getProdCat()}"></span>
                     </td>
                         <td>
                             <span th:text="${prod.getPrice()}"></span>
@@ -112,13 +112,13 @@
                                 <input type="hidden" name="id" th:value="${prod.getUserId()}" class="form-input">
 
                                 <div class="form-group d-flex justify-content-between">
-                                    <a class="btn bnt-sm btn-incre" href="">
+                                    <a class="btn bnt-sm btn-incre" th:href="@{/increase-decrease-product(newQuantity=${1}, prodId=${prod.getProdId()}, userId=${session.id})}">
                                         <i class="fas fa-plus-square"></i>
                                     </a>
 
                                     <input type="text" name="quantity" class="form-control"  th:value="${prod.getQuantity()}" readonly>
 
-                                    <a class="btn btn-sm btn-decre" href="">
+                                    <a class="btn btn-sm btn-decre" th:href="@{/increase-decrease-product(newQuantity=${-1}, prodId=${prod.getProdId()}, userId=${session.id})}">
                                         <i class="fas fa-minus-square"></i>
                                     </a>
                                 </div>
@@ -130,7 +130,7 @@
                         </td>
 
                         <td>
-                            <a href="" class="btn btn-sm btn-danger">
+                            <a th:href="@{/delete-product(userId=${session.id}, prodId=${prod.getProdId()})}" class="btn btn-sm btn-danger">
                                 Remove
                             </a>
                         </td>

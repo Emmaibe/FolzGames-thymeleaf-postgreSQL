@@ -1,5 +1,6 @@
 package org.lordibe.folzgames.services.serviceimplementations;
 
+import jakarta.transaction.Transactional;
 import org.lordibe.folzgames.entities.Cart;
 import org.lordibe.folzgames.repositries.CartRepository;
 import org.lordibe.folzgames.repositries.ProductRepository;
@@ -30,6 +31,8 @@ public class CartServiceImpl implements CartService {
             cart.setUserId(userId);
             cart.setProdId(prodId);
             cart.setPrice(productRepository.findProductById(prodId).get().getPrice());
+            cart.setProdCat(productRepository.findProductById(prodId).get().getCategory());
+            cart.setProdName(productRepository.findProductById(prodId).get().getName());
             cart.setQuantity(1);
 
             cartRepository.save(cart);
@@ -47,5 +50,11 @@ public class CartServiceImpl implements CartService {
                 .map(cart -> cart.getQuantity() * cart.getPrice())
                 .reduce((double) 0, Double::sum);
 
+    }
+
+    @Override
+    @Transactional
+    public void deleteByUserIdAndProdId(Integer userId, Integer prodId) {
+        cartRepository.deleteByUserIdAndProdId(userId, prodId);
     }
 }

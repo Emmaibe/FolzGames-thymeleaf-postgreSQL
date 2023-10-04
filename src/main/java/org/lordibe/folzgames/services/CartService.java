@@ -10,4 +10,6 @@ public interface CartService {
     List<Cart> getUserCartList(Integer userId);
 
     Double totalPrice(List<Cart> userCart);
+
+    void deleteByUserIdAndProdId(Integer userId, Integer prodId);
 }
