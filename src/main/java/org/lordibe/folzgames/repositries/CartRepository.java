@@ -21,4 +21,6 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     void updateQuantityByProdIdAndUserId(@Param("newQuantity") Integer newQuantity,
                                          @Param("prodId") Integer prodId,
                                          @Param("userId") Integer userId);
+
+
 }

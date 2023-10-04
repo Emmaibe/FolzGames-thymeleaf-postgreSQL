@@ -7,6 +7,8 @@ import org.lordibe.folzgames.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
@@ -32,5 +34,18 @@ public class CartServiceImpl implements CartService {
 
             cartRepository.save(cart);
         }
+    }
+
+    @Override
+    public List<Cart> getUserCartList(Integer userId) {
+        return cartRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Double totalPrice(List<Cart> userCart) {
+        return userCart.stream()
+                .map(cart -> cart.getQuantity() * cart.getPrice())
+                .reduce((double) 0, Double::sum);
+
     }
 }
