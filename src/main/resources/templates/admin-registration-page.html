@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="FolzGames" />
+    <meta name="author" content="Ibenwankwo Emmanuel" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" th:href="@{images/web-images/shopping-cart.gif}" />
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{css/index-styles.css}" rel="stylesheet" />
+
+    <title>Sign Up | FolzGames</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" th:href="@{fonts/material-icon/css/material-design-iconic-font.min.css}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<input type="hidden" id="status" th:value="${status}">
+
+<div class="main">
+
+    <!-- Sign up form -->
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">ADMIN | Signup</h2>
+
+                    <form method="post" th:action="@{/admin-register}" class="register-form" id="register-form" th:object="${admin}">
+                        <div class="form-group">
+                            <label for="f_name">
+                                <i class="zmdi zmdi-account material-icons-name"></i>
+                            </label>
+
+                            <input type="text" name="firstname" id="f_name" placeholder="Your First Name" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="l_name">
+                                <i class="zmdi zmdi-account material-icons-name"></i>
+                            </label>
+
+                            <input type="text" name="lastname" id="l_name" placeholder="Your Last Name" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="zmdi zmdi-email"></i>
+                            </label>
+
+                            <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pass">
+                                <i class="zmdi zmdi-lock"></i>
+                            </label>
+
+                            <input type="password" name="password" id="pass" placeholder="Password" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="re_pass">
+                                <i class="zmdi zmdi-lock-outline"></i>
+                            </label>
+
+                            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact">
+                                <i class="zmdi zmdi-lock-outline"></i>
+                            </label>
+
+                            <input type="text" name="phone" id="contact" placeholder="Contact no" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>
+                                I agree all statements in <a href="#" class="term-service">Terms of service</a>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-button">
+                            <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure>
+                        <img th:src="@{images/product-images/games/Google VR.png}" alt="sing up image" style="height: 21.5rem">
+                    </figure>
+
+                    <a th:href="@{/admin-login-page}" class="signup-image-link">
+                        I am already member
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- JS -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script th:src="@{js/main.js}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="alert/dist/sweetalert.css">
+
+<script type="text/javascript">
+    const status = document.getElementById("status").value;
+
+    if (status === "success") {
+        swal("Congrats", "Account Created Successfully", "success");
+    } else {
+        swal("Sorry", "Account Creation Unsuccessful", "failed");
+    }
+</script>
+</body>
+</html>
