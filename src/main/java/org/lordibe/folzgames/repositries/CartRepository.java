@@ -2,7 +2,6 @@ package org.lordibe.folzgames.repositries;
 
 import jakarta.transaction.Transactional;
 import org.lordibe.folzgames.entities.Cart;
-import org.lordibe.folzgames.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +20,11 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     void updateQuantityByProdIdAndUserId(@Param("newQuantity") Integer newQuantity,
                                          @Param("prodId") Integer prodId,
                                          @Param("userId") Integer userId);
+
+//    @Modifying
+//    @Transactional
+//    @Query("SELECT c.prodId, c.userId, c.price, c.quantity, p.name, p.category FROM Cart c JOIN Product p ON c.prodId = p.id WHERE c.userId = :inputID")
+//    List<Cart> findByUserId(@Param("inputID") Integer userId);
 
 
 }

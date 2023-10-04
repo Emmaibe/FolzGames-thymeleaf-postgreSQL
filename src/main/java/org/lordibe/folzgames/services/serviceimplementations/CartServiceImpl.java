@@ -26,7 +26,7 @@ public class CartServiceImpl implements CartService {
         if (cart != null) {
             cartRepository.updateQuantityByProdIdAndUserId(newQuantity, prodId, userId);
         } else {
-            cart = new Cart();
+            cart = new org.lordibe.folzgames.entities.Cart();
             cart.setUserId(userId);
             cart.setProdId(prodId);
             cart.setPrice(productRepository.findProductById(prodId).get().getPrice());

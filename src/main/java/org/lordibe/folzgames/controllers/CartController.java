@@ -1,25 +1,26 @@
 package org.lordibe.folzgames.controllers;
 
+import jakarta.servlet.http.HttpSession;
+import org.lordibe.folzgames.entities.Cart;
+import org.lordibe.folzgames.repositries.ProductRepository;
 import org.lordibe.folzgames.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class CartController {
     private CartService cartService;
+    private ProductRepository productRepository;
 
     @Autowired
-    public CartController(CartService cartService) {
+    public CartController(CartService cartService, ProductRepository productRepository) {
         this.cartService = cartService;
-    }
-
-
-    @GetMapping("/cart-page")
-    public String cartPage() {
-        return "/cart-page";
+        this.productRepository = productRepository;
     }
 
     @GetMapping("/add-to-cart")
@@ -32,4 +33,16 @@ public class CartController {
         return "redirect:/shop-page";
     }
 
+    @GetMapping("/cart-page")
+    public String displayCustomerCart(HttpSession session, Model model) {
+        int id = (int) session.getAttribute("id");
+
+        List<Cart> userCart = cartService.getUserCartList(id);
+        Double totalPrice = cartService.totalPrice(userCart);
+
+        model.addAttribute("cart", userCart);
+        model.addAttribute("totalPrice", totalPrice);
+
+        return "cart-page";
+    }
 }
