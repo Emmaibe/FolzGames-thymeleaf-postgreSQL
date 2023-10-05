@@ -12,8 +12,11 @@ import java.util.Optional;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
     List<Cart> findByUserId(Integer id);
+
     Optional<Cart> findCartByUserIdAndProdId(Integer userId, Integer prodId);
 
+    @Modifying
+    @Transactional
     void deleteByUserIdAndProdId(Integer userId, Integer prodId);
 
     @Modifying

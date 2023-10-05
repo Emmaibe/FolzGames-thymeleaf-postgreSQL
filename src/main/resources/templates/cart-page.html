@@ -112,19 +112,19 @@
                                 <input type="hidden" name="id" th:value="${prod.getUserId()}" class="form-input">
 
                                 <div class="form-group d-flex justify-content-between">
-                                    <a class="btn bnt-sm btn-incre" th:href="@{/increase-decrease-product(newQuantity=${1}, prodId=${prod.getProdId()}, userId=${session.id})}">
+                                    <a class="btn bnt-sm btn-incre" th:href="@{/increase-product(newQuantity=${1}, prodId=${prod.getProdId()}, userId=${session.id})}">
                                         <i class="fas fa-plus-square"></i>
                                     </a>
 
                                     <input type="text" name="quantity" class="form-control"  th:value="${prod.getQuantity()}" readonly>
 
-                                    <a class="btn btn-sm btn-decre" th:href="@{/increase-decrease-product(newQuantity=${-1}, prodId=${prod.getProdId()}, userId=${session.id})}">
+                                    <a class="btn btn-sm btn-decre" th:href="@{/decrease-product(newQuantity=${-1}, prodId=${prod.getProdId()}, userId=${session.id}, prodQty=${prod.getQuantity()})}">
                                         <i class="fas fa-minus-square"></i>
                                     </a>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-sm">
-                                    Buy
+                                    <a th:href="@{/cart-page}" style="color: white; text-decoration: none">Buy</a>
                                 </button>
                             </form>
                         </td>
