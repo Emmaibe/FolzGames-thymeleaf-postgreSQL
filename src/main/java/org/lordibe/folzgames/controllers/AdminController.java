@@ -26,4 +26,9 @@ public class AdminController {
         this.adminService = adminService;
         this.adminRepository = adminRepository;
     }
+
+    @GetMapping("/admin-home-page")
+    public String adminHome() {
+        return "admin-home-page";
+    }
 }

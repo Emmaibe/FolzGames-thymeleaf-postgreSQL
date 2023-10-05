@@ -11,12 +11,17 @@ import java.util.List;
 public class PagesController {
     @GetMapping("")
     public String homePage() {
-        return "redirect:/user-login-page";
+        return "redirect:/landing-page";
     }
 
     @GetMapping("/home-page")
     public String home() {
         return "home-page";
+    }
+
+    @GetMapping("/landing-page")
+    public String landingPage() {
+        return "landing-page";
     }
 
 }
