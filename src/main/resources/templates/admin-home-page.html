@@ -26,9 +26,50 @@
     <!-- Main css -->
     <link rel="stylesheet" th:href="@{static/css/style.css}">
 
+    <style>
+        .tabs-cont {
+            margin-inline: auto;
+            height: 35vh;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tabs a {
+            background-color: #2c3e50;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            width: 15vw;
+            height: 15vh;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tabs a:hover {
+            transition: 0.3s;
+            background-color: #dc3545;
+            color: #2c3e50;
+        }
+    </style>
 </head>
 
 <body>
+
+<!--check for authentication-->
+<div th:if="${session.id == null}">
+    <script th:src="@{/admin-login-page}"></script>
+</div>
+
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" th:href="@{/admin-home-page}">FolzGames</a>
@@ -61,9 +102,27 @@
     </div>
 </nav>
 
-<section style="min-height: 55vh; margin-top: 8rem">
 
+
+<section style="margin-top: 12rem">
+    <div class="tabs-cont">
+        <div class="tabs">
+                <a class="py-3 px-0 px-lg-3 rounded" th:href="@{/admin-view-products}">
+                    View Products
+                </a>
+
+                <a class="py-3 px-0 px-lg-3 rounded" th:href="@{admin-add-product}">
+                    Add Products
+                </a>
+
+                <a class="py-3 px-0 px-lg-3 rounded" th:href="@{admin-edit-product}">
+                    Edit Products
+                </a>
+        </div>
+    </div>
 </section>
+
+
 
 <!-- Footer-->
 <footer class="footer text-center">

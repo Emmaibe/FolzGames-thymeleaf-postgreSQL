@@ -29,6 +29,16 @@ public class ProductController {
         return "shop-page";
     }
 
+    @GetMapping("/admin-view-products")
+    public String addAllProductsToAdminPage(Model model) {
+        List<Product> products = productService.showProducts();
+
+        model.addAttribute("products", products);
+        model.addAttribute("cat", "All Products");
+
+        return "admin-view-products";
+    }
+
     @GetMapping("/add-products-by-category-games")
     public String addProductsByGamesCategoryToPage(Model model) {
         List<Product> products = productService.showProductsByCategory("Games");
@@ -36,6 +46,15 @@ public class ProductController {
         model.addAttribute("products", products);
         model.addAttribute("cat", "Games");
         return "shop-page";
+    }
+
+    @GetMapping("/add-products-by-category-games-admin")
+    public String addProductsByGamesCategoryToAdminPage(Model model) {
+        List<Product> products = productService.showProductsByCategory("Games");
+
+        model.addAttribute("products", products);
+        model.addAttribute("cat", "Games");
+        return "admin-view-products";
     }
 
     @GetMapping("/add-products-by-category-vr")
@@ -47,6 +66,15 @@ public class ProductController {
         return "shop-page";
     }
 
+    @GetMapping("/add-products-by-category-vr-admin")
+    public String addProductsByVRCategoryToAdminPage(Model model) {
+        List<Product> products = productService.showProductsByCategory("VR");
+
+        model.addAttribute("products", products);
+        model.addAttribute("cat", "VR");
+        return "admin-view-products";
+    }
+
     @GetMapping("/add-products-by-search")
     public String addProductToPage(@RequestParam("name-search") String search, Model model) {
         List<Product> products = productService.showProductsBySearch(search);
@@ -54,5 +82,15 @@ public class ProductController {
         model.addAttribute("products", products);
 
         return "shop-page";
+    }
+
+    @GetMapping("/admin-edit-product")
+    public String adminEditProduct() {
+        return "admin-edit-product";
+    }
+
+    @GetMapping("/admin-add-product")
+    public String adminAddProduct() {
+        return "admin-add-product";
     }
 }
