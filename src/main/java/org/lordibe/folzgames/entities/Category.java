@@ -3,6 +3,8 @@ package org.lordibe.folzgames.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Builder
 @Getter

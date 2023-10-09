@@ -2,15 +2,12 @@ package org.lordibe.folzgames.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.lordibe.folzgames.entities.Cart;
-import org.lordibe.folzgames.repositries.CartRepository;
 import org.lordibe.folzgames.repositries.ProductRepository;
 import org.lordibe.folzgames.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.ui.Model;;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -20,8 +17,6 @@ import java.util.Objects;
 public class CartController {
     private CartService cartService;
     private ProductRepository productRepository;
-
-    private CartRepository cartRepository;
 
     @Autowired
     public CartController(CartService cartService, ProductRepository productRepository) {

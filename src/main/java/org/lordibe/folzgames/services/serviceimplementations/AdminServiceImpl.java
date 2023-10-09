@@ -48,11 +48,11 @@ public class AdminServiceImpl implements AdminService {
     public Boolean loginAuthentication(String email, String password) {
         Boolean isPresent = adminRepository.findByEmailAndPassword(email, password).isPresent();
 
-        if (isPresent) {
+        if (!isPresent) {
+            return false;
+        } else {
             session.setAttribute("client", adminRepository.findFirstByEmail(email).orElse(null));
             return true;
-        } else {
-            return false;
         }
     }
 }

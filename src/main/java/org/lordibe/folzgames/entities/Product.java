@@ -2,6 +2,7 @@ package org.lordibe.folzgames.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.lordibe.folzgames.enums.Categories;
 
 @Data
 @Builder

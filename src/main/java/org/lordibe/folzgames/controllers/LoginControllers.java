@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpSession;
 import org.lordibe.folzgames.repositries.AdminRepository;
 import org.lordibe.folzgames.repositries.UserRepository;
 import org.lordibe.folzgames.services.AdminService;
-import org.lordibe.folzgames.services.ProductService;
 import org.lordibe.folzgames.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,19 +21,15 @@ public class LoginControllers {
 
     private HttpSession session;
 
-    private ProductService productService;
-
     @Autowired
     public LoginControllers(UserService userService,
                           HttpSession session,
-                          ProductService productService,
                           UserRepository userRepository,
                             AdminService adminService,
                             AdminRepository adminRepository) {
 
         this.userService = userService;
         this.session = session;
-        this.productService = productService;
         this.userRepository = userRepository;
         this.adminService = adminService;
         this.adminRepository = adminRepository;

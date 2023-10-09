@@ -6,6 +6,7 @@ import org.lordibe.folzgames.repositries.CartRepository;
 import org.lordibe.folzgames.repositries.ProductRepository;
 import org.lordibe.folzgames.services.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<Cart> getUserCartList(Integer userId) {
-        return cartRepository.findByUserId(userId);
+        return cartRepository.findByUserIdOrderByProdId(userId);
     }
 
     @Override

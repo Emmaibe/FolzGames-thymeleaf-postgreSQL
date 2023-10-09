@@ -2,6 +2,7 @@ package org.lordibe.folzgames.repositries;
 
 import jakarta.transaction.Transactional;
 import org.lordibe.folzgames.entities.Cart;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
-    List<Cart> findByUserId(Integer id);
+    List<Cart> findByUserIdOrderByProdId(Integer id);
 
     Optional<Cart> findCartByUserIdAndProdId(Integer userId, Integer prodId);
 
