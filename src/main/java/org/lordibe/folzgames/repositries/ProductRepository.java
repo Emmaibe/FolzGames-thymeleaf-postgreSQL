@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
-    List<Product> findAllByCategory(String category);
+    @Query("SELECT p FROM Product p ORDER BY p.name")
+    List<Product> findAllOrderByName();
+    List<Product> findAllByCategoryOrderByName(String category);
     List<Product> findAllByNameContainingIgnoreCase(String name);
 
     Optional<Product> findProductById(Integer prodId);

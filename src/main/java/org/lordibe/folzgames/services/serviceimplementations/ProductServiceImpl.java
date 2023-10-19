@@ -6,6 +6,7 @@ import org.lordibe.folzgames.repositries.ProductRepository;
 import org.lordibe.folzgames.entities.Product;
 import org.lordibe.folzgames.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> showProducts() {
-        return productRepository.findAll();
+        return productRepository.findAllOrderByName();
     }
 
     @Override
     public List<Product> showProductsByCategory(String category) {
-        return productRepository.findAllByCategory(category);
+        return productRepository.findAllByCategoryOrderByName(category);
     }
 
     @Override
